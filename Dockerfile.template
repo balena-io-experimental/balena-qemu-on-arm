@@ -3,11 +3,12 @@ FROM resin/%%RESIN_MACHINE_NAME%%-debian:jessie
 MAINTAINER Gergely Imreh <gergely@resin.io>
 
 RUN apt-get update && \
-    apt-get -o dir::cache::archives="/tmp/deb/" -d install qemu-user-static && \
-    cd /tmp/deb/ && \
+    apt-get -o dir::cache::archives="/tmp/" -d install qemu-user-static && \
+    cd /tmp/ && \
+    ls -la && \
     mkdir data && \
     dpkg-deb -x qemu-user-static*.deb data && \
     cp data/usr/bin/qemu-x86_64-static /usr/bin/ && \
-    cd / && rm -rf /tmp/deb && apt-get clean && rm -rf /var/lib/apt/lists/*
+    cd / && rm -rf /tmp/* && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 CMD while : ; do echo "idling..."; sleep 600; done
