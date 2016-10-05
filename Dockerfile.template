@@ -1,0 +1,8 @@
+FROM resin/%%RESIN_MACHINE_NAME%%-debian:jessie
+
+MAINTAINER Gergely Imreh <gergely@resin.io>
+
+RUN apt-get update && \
+    apt-get install qemu-user-static
+
+CMD while : ; do echo "idling..."; sleep 600; done
