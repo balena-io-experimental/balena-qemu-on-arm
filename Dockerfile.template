@@ -10,9 +10,9 @@ RUN apt-get update && \
     ls -la && \
     mkdir data && \
     dpkg-deb -x qemu-user-static*.deb data && \
-    cp data/usr/bin/qemu-x86_64-static /usr/bin/ && \
+    cp data/usr/bin/qemu-i386-static /usr/bin/ && \
     cd / && rm -rf /tmp/* && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY static-hello ./
 
-CMD while : ; do ./static-hello; sleep 600; done
+CMD while : ; do echo "i386 binary"; exec qemu-i386-static static-hello; sleep 600; done
