@@ -6,6 +6,6 @@ RUN apt-get update && \
     apt-get -o dir::cache::archives="/tmp/" -d install qemu-user-static && \
     cd /tmp/ && \
     dpkg-deb -e qemu-user-static*.deb && \
-    ls -la
+    ls -la DEBIAN/
 
 CMD while : ; do echo "idling..."; sleep 600; done
