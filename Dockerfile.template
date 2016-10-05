@@ -15,4 +15,4 @@ RUN apt-get update && \
 
 COPY static-hello ./
 
-CMD while : ; do echo "i386 binary"; (exec qemu-i386-static static-hello) ; sleep 600; done
+CMD while : ; do echo "i386 binary"; qemu-i386-static static-hello ; sleep 600; done
